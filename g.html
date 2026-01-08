@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Minecraft Gradient Text Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,Segoe UI,Roboto,Arial;
+  background:#0e1116;
+  color:#eaeaea;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #1b1f2a, transparent 40%),
+    radial-gradient(circle at 80% 30%, #1a2b3d, transparent 45%),
+    radial-gradient(circle at 50% 80%, #241a3d, transparent 50%);
+  animation:bgMove 20s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes bgMove{
+  0%{background-position:0% 0%,100% 0%,50% 100%}
+  50%{background-position:100% 50%,0% 100%,50% 0%}
+  100%{background-position:0% 0%,100% 0%,50% 100%}
+}
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.card{
+  background:#141923;
+  border:1px solid #2a3242;
+  border-radius:16px;
+  padding:20px;
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+h1{margin:0 0 16px;font-size:20px}
+label{display:block;margin-bottom:6px;font-size:13px;opacity:.85}
+input,textarea,select,button{
+  width:100%;
+  background:#0e1116;
+  color:#eaeaea;
+  border:1px solid #2a3242;
+  border-radius:10px;
+  padding:10px;
+}
+textarea{
+  min-height:90px;
+  resize:vertical;
+  font-family:monospace;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.color-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.color-row input[type=color]{
+  width:46px;
+  height:40px;
+  padding:0;
+  border:none;
+}
+button{cursor:pointer}
+.preview{
+  margin-top:12px;
+  padding:12px;
+  border:1px dashed #2a3242;
+  border-radius:10px;
+  font-family:monospace;
+  font-size:18px;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+}
+.small{margin-top:6px;font-size:12px;opacity:.7}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="card">
+    <h1>Minecraft Gradient Text Generator</h1>
+
+    <label>Text</label>
+    <input id="text" value="Save">
+
+    <div class="row">
+      <div style="flex:1">
+        <label>Color prefix</label>
+        <select id="prefix">
+          <option value="&">&amp;</option>
+          <option value="§">§</option>
+        </select>
+      </div>
+      <div style="flex:1">
+        <label>Style</label>
+        <select id="style">
+          <option value="">None</option>
+          <option value="l">Bold</option>
+          <option value="o">Italic</option>
+          <option value="n">Underline</option>
+        </select>
+      </div>
+    </div>
+
+    <label style="margin-top:14px">HEX format</label>
+    <select id="hexMode">
+      <option value="short">Plugin HEX (&#rrggbb)</option>
+      <option value="vanilla">Vanilla HEX (&x)</option>
+    </select>
+
+    <label style="margin-top:14px">Gradient colors</label>
+    <div id="colors"></div>
+
+    <button onclick="addColor()">+ Add color</button>
+
+    <label style="margin-top:14px">Minecraft output</label>
+    <textarea id="output" readonly></textarea>
+
+    <button onclick="copyText()">Copy</button>
+
+    <div class="preview" id="preview"></div>
+    <div class="small">Minecraft 1.16+ HEX</div>
+  </div>
+</div>
+
+<script>
+const colorsDiv=document.getElementById("colors");
+
+function addColor(val="#ffd600"){
+  const row=document.createElement("div");
+  row.className="color-row";
+
+  const input=document.createElement("input");
+  input.type="color";
+  input.value=val;
+  input.addEventListener("input",generate);
+
+  const btn=document.createElement("button");
+  btn.textContent="✕";
+  btn.onclick=()=>{
+    if(colorsDiv.children.length<=2)return;
+    row.remove();
+    generate();
+  };
+
+  row.appendChild(input);
+  row.appendChild(btn);
+  colorsDiv.appendChild(row);
+  generate();
+}
+
+function hexToRgb(h){
+  h=h.replace("#","");
+  return{r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16)};
+}
+
+function mix(a,b,t){
+  return{r:Math.round(a.r+(b.r-a.r)*t),g:Math.round(a.g+(b.g-a.g)*t),b:Math.round(a.b+(b.b-a.b)*t)};
+}
+
+function rgbToHex(c){
+  return"#"+[c.r,c.g,c.b].map(v=>v.toString(16).padStart(2,"0")).join("");
+}
+
+function mcHex(prefix,hex){
+  const mode=document.getElementById("hexMode").value;
+  const clean=hex.replace("#","").toLowerCase();
+  if(mode==="short")return prefix+"#"+clean;
+  return prefix+"x"+clean.split("").map(c=>prefix+c).join("");
+}
+
+function generate(){
+  const text=document.getElementById("text").value;
+  const prefix=document.getElementById("prefix").value;
+  const style=document.getElementById("style").value;
+  const cols=[...colorsDiv.querySelectorAll("input[type=color]")].map(c=>c.value);
+  if(cols.length<2){output.value="";preview.innerHTML="";return}
+  let out="",prev="";
+  for(let i=0;i<text.length;i++){
+    const t=i/(text.length-1||1);
+    const idx=t*(cols.length-1);
+    const a=Math.floor(idx);
+    const b=Math.min(a+1,cols.length-1);
+    const c1=hexToRgb(cols[a]);
+    const c2=hexToRgb(cols[b]);
+    const hex=rgbToHex(mix(c1,c2,idx-a));
+    out+=mcHex(prefix,hex)+(style?prefix+style:"")+text[i];
+    prev+=`<span style="color:${hex}">${text[i]}</span>`;
+  }
+  output.value=out;
+  preview.innerHTML=prev;
+}
+
+function copyText(){
+  navigator.clipboard.writeText(output.value);
+}
+
+addColor("#ffd600");
+addColor("#e60000");
+generate();
+
+document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",generate));
+document.getElementById("hexMode").addEventListener("change",generate);
+</script>
+</body>
+</html>
