@@ -1,224 +1,223 @@
-<!doctype html>
-<html lang="uk">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Raws Hub</title>
-  <meta name="description" content="Raws Hub — your hub for projects, links, and updates." />
+<meta charset="UTF-8">
+<title>Minecraft Gradient Text Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root{
-      --bg:#0b0d12;
-      --panel:#111522;
-      --panel2:#0f1320;
-      --text:#e8ebff;
-      --muted:#a9b0d6;
-      --stroke:rgba(255,255,255,.08);
-      --glow:rgba(120,160,255,.18);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background:
-        radial-gradient(900px 500px at 20% 10%, rgba(120,160,255,.14), transparent 55%),
-        radial-gradient(900px 500px at 80% 0%, rgba(255,120,200,.10), transparent 50%),
-        radial-gradient(900px 500px at 50% 120%, rgba(120,255,200,.08), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.5;
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 60px}
-
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:14px 16px;
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-radius:var(--radius);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.03), 0 20px 60px rgba(0,0,0,.45);
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px;
-    }
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
-                  linear-gradient(135deg, rgba(120,160,255,.95), rgba(255,120,200,.75));
-      box-shadow: 0 12px 30px var(--glow);
-      border:1px solid rgba(255,255,255,.18);
-    }
-    nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      font-weight:600;
-      transition:.18s;
-    }
-    .pill:hover{transform:translateY(-1px); color:var(--text); border-color:rgba(255,255,255,.16)}
-
-    .hero{
-      margin-top:18px;
-      padding:34px 22px;
-      border-radius:var(--radius);
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
-      box-shadow: 0 20px 70px rgba(0,0,0,.5);
-    }
-    .hero h1{
-      margin:0 0 10px;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height:1.1;
-    }
-    .hero p{margin:0 0 18px; color:var(--muted); max-width:70ch}
-    .cta{display:flex; gap:10px; flex-wrap:wrap}
-    .btn{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);
-      font-weight:700;
-      transition:.18s;
-      cursor:pointer;
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.18)}
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(120,160,255,.95), rgba(255,120,200,.85));
-      border-color:rgba(255,255,255,.22);
-      color:#0a0b10;
-    }
-
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
-    .card{
-      grid-column: span 6;
-      padding:16px;
-      border-radius:var(--radius);
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
-      min-height:120px;
-    }
-    .card h3{margin:0 0 6px}
-    .card p{margin:0; color:var(--muted)}
-    .card small{color:rgba(232,235,255,.6)}
-    .card .row{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
-
-    .footer{
-      margin-top:22px;
-      color:rgba(232,235,255,.55);
-      text-align:center;
-      font-size:14px;
-    }
-
-    @media (max-width: 860px){
-      .card{grid-column: span 12;}
-      header{align-items:flex-start; flex-direction:column}
-      nav{justify-content:flex-start}
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,Segoe UI,Roboto,Arial;
+  background:#0e1116;
+  color:#eaeaea;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #1b1f2a, transparent 40%),
+    radial-gradient(circle at 80% 30%, #1a2b3d, transparent 45%),
+    radial-gradient(circle at 50% 80%, #241a3d, transparent 50%);
+  animation:bgMove 20s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes bgMove{
+  0%{background-position:0% 0%,100% 0%,50% 100%}
+  50%{background-position:100% 50%,0% 100%,50% 0%}
+  100%{background-position:0% 0%,100% 0%,50% 100%}
+}
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px;
+}
+.card{
+  background:#141923;
+  border:1px solid #2a3242;
+  border-radius:16px;
+  padding:20px;
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+h1{margin:0 0 16px;font-size:20px}
+label{display:block;margin-bottom:6px;font-size:13px;opacity:.85}
+input,textarea,select,button{
+  width:100%;
+  background:#0e1116;
+  color:#eaeaea;
+  border:1px solid #2a3242;
+  border-radius:10px;
+  padding:10px;
+}
+textarea{
+  min-height:90px;
+  resize:vertical;
+  font-family:monospace;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.color-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.color-row input[type=color]{
+  width:46px;
+  height:40px;
+  padding:0;
+  border:none;
+}
+button{cursor:pointer}
+.preview{
+  margin-top:12px;
+  padding:12px;
+  border:1px dashed #2a3242;
+  border-radius:10px;
+  font-family:monospace;
+  font-size:18px;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+}
+.small{margin-top:6px;font-size:12px;opacity:.7}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div style="font-size:16px">Raws Hub</div>
-          <div style="font-size:12px; color:var(--muted)">links • projects • updates</div>
-        </div>
+<div class="container">
+  <div class="card">
+    <h1>Minecraft Gradient Text Generator</h1>
+
+    <label>Text</label>
+    <input id="text" value="Save">
+
+    <div class="row">
+      <div style="flex:1">
+        <label>Color prefix</label>
+        <select id="prefix">
+          <option value="&">&amp;</option>
+          <option value="§">§</option>
+        </select>
       </div>
-
-      <nav>
-        <a class="pill" href="#projects">Проєкти</a>
-        <a class="pill" href="#links">Лінки</a>
-        <a class="pill" href="#discord">Discord</a>
-        <a class="pill" href="#contact">Контакт</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <h1>Raws Hub</h1>
-      <p>
-        Один хаб, щоб зібрати все: релізи, утиліти, посилання, і “шо нового”.
-        Тут може бути твоє меню, твої проєкти й твій стиль 😈
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">🚀 Дивитись проєкти</a>
-        <a class="btn" href="#discord">💬 Discord</a>
-        <a class="btn" href="#links">🔗 Лінки</a>
+      <div style="flex:1">
+        <label>Style</label>
+        <select id="style">
+          <option value="">None</option>
+          <option value="l">Bold</option>
+          <option value="o">Italic</option>
+          <option value="n">Underline</option>
+        </select>
       </div>
-    </section>
-
-    <section id="projects" class="grid" aria-label="Projects">
-      <div class="card">
-        <h3>Проєкт #1</h3>
-        <p>Короткий опис. Що це таке і чому воно “кайф”.</p>
-        <div class="row">
-          <a class="btn" href="#" onclick="alert('Постав тут свій лінк 🙂')">🌐 Відкрити</a>
-          <a class="btn" href="#" onclick="alert('GitHub/архів сюди 🙂')">📦 Завантажити</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Проєкт #2</h3>
-        <p>Короткий опис. Можна додати статус: beta / stable / WIP.</p>
-        <div class="row">
-          <span class="btn" style="cursor:default">🧪 beta</span>
-          <span class="btn" style="cursor:default">🕶️ dark</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="links" class="grid" aria-label="Links">
-      <div class="card">
-        <h3>Швидкі лінки</h3>
-        <p>Додай свої кнопки: YouTube, TikTok, GitHub, Telegram, що хочеш.</p>
-        <div class="row">
-          <a class="btn" href="#" onclick="alert('Встав свій URL у href')">▶️ YouTube</a>
-          <a class="btn" href="#" onclick="alert('Встав свій URL у href')">🐙 GitHub</a>
-          <a class="btn" href="#" onclick="alert('Встав свій URL у href')">📨 Telegram</a>
-        </div>
-        <small>Порада: заміни # у href на реальні посилання.</small>
-      </div>
-
-      <div class="card" id="discord">
-        <h3>Discord</h3>
-        <p>Тут можна поставити інвайт на сервер і короткі правила.</p>
-        <div class="row">
-          <a class="btn primary" href="#" onclick="alert('Встав інвайт у href')">✨ Join server</a>
-          <a class="btn" href="#contact">📌 Контакт</a>
-        </div>
-        <small>Хочеш “Server Tag” — треба 3 бусти 😭</small>
-      </div>
-    </section>
-
-    <section id="contact" class="hero" style="padding:22px">
-      <h2 style="margin:0 0 10px">Контакт</h2>
-      <p style="margin:0; color:var(--muted)">
-        Впиши сюди свій нік, пошту або будь-який контакт. Можна навіть форму додати.
-      </p>
-    </section>
-
-    <div class="footer">
-      © <span id="y"></span> Raws Hub — made in the dark vibes.
     </div>
-  </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+    <label style="margin-top:14px">HEX format</label>
+    <select id="hexMode">
+      <option value="short">Plugin HEX (&#rrggbb)</option>
+      <option value="vanilla">Vanilla HEX (&x)</option>
+    </select>
+
+    <label style="margin-top:14px">Gradient colors</label>
+    <div id="colors"></div>
+
+    <button onclick="addColor()">+ Add color</button>
+
+    <label style="margin-top:14px">Minecraft output</label>
+    <textarea id="output" readonly></textarea>
+
+    <button onclick="copyText()">Copy</button>
+
+    <div class="preview" id="preview"></div>
+    <div class="small">Minecraft 1.16+ HEX</div>
+  </div>
+</div>
+
+<script>
+const colorsDiv=document.getElementById("colors");
+
+function addColor(val="#ffd600"){
+  const row=document.createElement("div");
+  row.className="color-row";
+
+  const input=document.createElement("input");
+  input.type="color";
+  input.value=val;
+  input.addEventListener("input",generate);
+
+  const btn=document.createElement("button");
+  btn.textContent="✕";
+  btn.onclick=()=>{
+    if(colorsDiv.children.length<=2)return;
+    row.remove();
+    generate();
+  };
+
+  row.appendChild(input);
+  row.appendChild(btn);
+  colorsDiv.appendChild(row);
+  generate();
+}
+
+function hexToRgb(h){
+  h=h.replace("#","");
+  return{r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16)};
+}
+
+function mix(a,b,t){
+  return{r:Math.round(a.r+(b.r-a.r)*t),g:Math.round(a.g+(b.g-a.g)*t),b:Math.round(a.b+(b.b-a.b)*t)};
+}
+
+function rgbToHex(c){
+  return"#"+[c.r,c.g,c.b].map(v=>v.toString(16).padStart(2,"0")).join("");
+}
+
+function mcHex(prefix,hex){
+  const mode=document.getElementById("hexMode").value;
+  const clean=hex.replace("#","").toLowerCase();
+  if(mode==="short")return prefix+"#"+clean;
+  return prefix+"x"+clean.split("").map(c=>prefix+c).join("");
+}
+
+function generate(){
+  const text=document.getElementById("text").value;
+  const prefix=document.getElementById("prefix").value;
+  const style=document.getElementById("style").value;
+  const cols=[...colorsDiv.querySelectorAll("input[type=color]")].map(c=>c.value);
+  if(cols.length<2){output.value="";preview.innerHTML="";return}
+  let out="",prev="";
+  for(let i=0;i<text.length;i++){
+    const t=i/(text.length-1||1);
+    const idx=t*(cols.length-1);
+    const a=Math.floor(idx);
+    const b=Math.min(a+1,cols.length-1);
+    const c1=hexToRgb(cols[a]);
+    const c2=hexToRgb(cols[b]);
+    const hex=rgbToHex(mix(c1,c2,idx-a));
+    out+=mcHex(prefix,hex)+(style?prefix+style:"")+text[i];
+    prev+=`<span style="color:${hex}">${text[i]}</span>`;
+  }
+  output.value=out;
+  preview.innerHTML=prev;
+}
+
+function copyText(){
+  navigator.clipboard.writeText(output.value);
+}
+
+addColor("#ffd600");
+addColor("#e60000");
+generate();
+
+document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",generate));
+document.getElementById("hexMode").addEventListener("change",generate);
+</script>
 </body>
 </html>
