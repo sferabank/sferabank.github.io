@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figma Plugins Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
     <style>
         :root {
-            --bg: #f9f8ff;
-            --card-bg: #ffffff;
-            --primary: #8b5cf6;
-            --primary-soft: #ede9fe;
-            --text-main: #1e1b4b;
-            --text-mute: #64748b;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --primary: #a020f0;
+            --primary-glow: rgba(160, 32, 240, 0.3);
+            --text-main: #ffffff;
+            --text-mute: #aaaaaa;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Minecraftia', sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -28,22 +28,24 @@
 
         .lang-control {
             display: flex;
-            background: white;
+            background: #000;
             padding: 5px;
-            border-radius: 14px;
+            border: 2px solid var(--primary);
             margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .lang-btn {
             border: none;
             background: transparent;
             padding: 10px 25px;
-            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             color: var(--text-main);
+            font-family: 'Minecraftia', sans-serif;
             transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
         .lang-btn.active {
@@ -51,7 +53,15 @@
             color: white;
         }
 
-        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
+        h1 { 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         .grid {
             display: grid;
@@ -64,50 +74,76 @@
         .card {
             background: var(--card-bg);
             padding: 30px;
-            border-radius: 24px;
-            border: 1px solid var(--primary-soft);
+            border: 2px solid #333;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .card:hover {
+            border-color: var(--primary);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 10px 30px var(--primary-glow);
         }
 
         .tag {
             display: inline-block;
-            background: var(--primary-soft);
+            background: #000;
             color: var(--primary);
             padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 700;
+            border: 1px solid var(--primary);
+            font-size: 0.65rem;
             margin-bottom: 15px;
             text-transform: uppercase;
             align-self: flex-start;
         }
 
-        .card h3 { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--primary); }
-        .card p { margin: 0; line-height: 1.5; color: var(--text-mute); font-size: 0.9rem; }
+        .card h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 1.2rem; 
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .card p { 
+            margin: 0; 
+            line-height: 1.6; 
+            color: var(--text-mute); 
+            font-size: 0.85rem; 
+        }
+
+        .back-link {
+            margin-top: 50px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
 
     <div class="lang-control">
-        <button id="btn-ru" class="lang-btn active" onclick="updateLang('ru')">Русский</button>
-        <button id="btn-en" class="lang-btn" onclick="updateLang('en')">English</button>
+        <button id="btn-ru" class="lang-btn active" onclick="updateLang('ru')">RU</button>
+        <button id="btn-en" class="lang-btn" onclick="updateLang('en')">EN</button>
     </div>
 
-    <h1 id="main-title">Лучшие плагины Figma</h1>
+    <h1 id="main-title">Figma Plugins</h1>
 
     <div class="grid" id="plugins-grid"></div>
+
+    <a href="index.html" class="back-link">← Back to Hub Selection</a>
 
     <script>
         const data = {
             ru: {
-                title: "Все лучшие плагины Figma",
+                title: "Лучшие плагины Figma",
                 plugins: [
                     { tag: "Effects", name: "Glow", desc: "Создает мягкое и реалистичное свечение для объектов." },
                     { tag: "AI Tool", name: "Magician", desc: "Генерация иконок, картинок и текстов с помощью нейросетей." },
@@ -124,7 +160,7 @@
                 ]
             },
             en: {
-                title: "All Top Figma Plugins",
+                title: "Top Figma Plugins",
                 plugins: [
                     { tag: "Effects", name: "Glow", desc: "Creates soft and realistic glows for your objects." },
                     { tag: "AI Tool", name: "Magician", desc: "Generate unique icons, images, and copy with AI magic." },
