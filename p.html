@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma Plugins Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f9f8ff;
+            --card-bg: #ffffff;
+            --primary: #8b5cf6;
+            --primary-soft: #ede9fe;
+            --text-main: #1e1b4b;
+            --text-mute: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lang-control {
+            display: flex;
+            background: white;
+            padding: 5px;
+            border-radius: 14px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 10px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--primary-soft);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .card h3 { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--primary); }
+        .card p { margin: 0; line-height: 1.5; color: var(--text-mute); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="lang-control">
+        <button id="btn-ru" class="lang-btn active" onclick="updateLang('ru')">Русский</button>
+        <button id="btn-en" class="lang-btn" onclick="updateLang('en')">English</button>
+    </div>
+
+    <h1 id="main-title">Лучшие плагины Figma</h1>
+
+    <div class="grid" id="plugins-grid"></div>
+
+    <script>
+        const data = {
+            ru: {
+                title: "Все лучшие плагины Figma",
+                plugins: [
+                    { tag: "Effects", name: "Glow", desc: "Создает мягкое и реалистичное свечение для объектов." },
+                    { tag: "AI Tool", name: "Magician", desc: "Генерация иконок, картинок и текстов с помощью нейросетей." },
+                    { tag: "Design", name: "Beautiful Shadows", desc: "Создание идеальных и глубоких многослойных теней." },
+                    { tag: "Workflow", name: "html.to.design", desc: "Превращает любые сайты в редактируемые макеты Figma." },
+                    { tag: "Visuals", name: "Mesh Gradient", desc: "Создание потрясающих абстрактных градиентов." },
+                    { tag: "Utility", name: "Remove BG", desc: "Удаление фона с фотографий в один клик." },
+                    { tag: "AI Tool", name: "Builder.io", desc: "Превращает ваш дизайн в чистый код (React, HTML и др.)." },
+                    { tag: "AI Tool", name: "Lummi", desc: "Библиотека бесплатных ИИ-изображений высокого качества." },
+                    { tag: "Icons", name: "Iconify", desc: "Огромная база иконок из популярных сетов в одном месте." },
+                    { tag: "Workflow", name: "Content Reel", desc: "Быстрое заполнение макетов реальными данными и фото." },
+                    { tag: "Accessibility", name: "Contrast", desc: "Проверка контрастности для доступности интерфейса." },
+                    { tag: "Workflow", name: "Autoflow", desc: "Автоматическое рисование стрелок между экранами." }
+                ]
+            },
+            en: {
+                title: "All Top Figma Plugins",
+                plugins: [
+                    { tag: "Effects", name: "Glow", desc: "Creates soft and realistic glows for your objects." },
+                    { tag: "AI Tool", name: "Magician", desc: "Generate unique icons, images, and copy with AI magic." },
+                    { tag: "Design", name: "Beautiful Shadows", desc: "Create perfect, realistic multi-layered shadows." },
+                    { tag: "Workflow", name: "html.to.design", desc: "Convert any live website into editable Figma layers." },
+                    { tag: "Visuals", name: "Mesh Gradient", desc: "Create stunning abstract gradients with a mesh tool." },
+                    { tag: "Utility", name: "Remove BG", desc: "Remove image backgrounds with a single click." },
+                    { tag: "AI Tool", name: "Builder.io", desc: "Convert your design into clean code (React, HTML, etc.)." },
+                    { tag: "AI Tool", name: "Lummi", desc: "A library of high-quality, free AI-generated images." },
+                    { tag: "Icons", name: "Iconify", desc: "Huge icon database from popular sets in one window." },
+                    { tag: "Workflow", name: "Content Reel", desc: "Quickly fill layouts with real data and avatars." },
+                    { tag: "Accessibility", name: "Contrast", desc: "Check contrast ratios for better accessibility." },
+                    { tag: "Workflow", name: "Autoflow", desc: "Automatically draw flows between screens." }
+                ]
+            }
+        };
+
+        function updateLang(lang) {
+            document.getElementById('main-title').innerText = data[lang].title;
+            const grid = document.getElementById('plugins-grid');
+            grid.innerHTML = '';
+            
+            data[lang].plugins.forEach(item => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <span class="tag">${item.tag}</span>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+            });
+
+            document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        }
+
+        updateLang('ru');
+    </script>
+</body>
+</html>
