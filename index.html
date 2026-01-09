@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Gradient</title>
+    <title>Hub Selection</title>
     <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
     
     <style>
@@ -11,50 +11,96 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #121212;
-            /* Використовуємо шрифт Minecraftia */
             font-family: 'Minecraftia', sans-serif;
+            color: white;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            /* Градієнт: білий -> фіолетовий -> білий */
-            background: linear-gradient(90deg, #ffffff 0%, #a020f0 50%, #ffffff 100%);
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            white-space: nowrap;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-align: center;
         }
 
-        .btn {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            background: transparent;
-            color: white;
-            border: 3px solid #a020f0;
-            border-radius: 0px; /* Квадратна кнопка в стилі майна */
-            text-decoration: none;
+        /* Градиенты для текста */
+        .mc-color {
+            background: linear-gradient(90deg, #ffffff, #a020f0);
+            -webkit-background-clip: text;
+        }
+
+        .figma-color {
+            background: linear-gradient(90deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+        }
+
+        /* Линия-разделитель (пунктир или тире) */
+        .dots {
+            flex: 1;
+            border-bottom: 3px dashed rgba(160, 32, 240, 0.3);
+            margin: 0 20px;
+            height: 10px;
+        }
+
+        .enter-btn {
+            font-size: 1.5rem;
+            color: #a020f0;
+            border: 2px solid #a020f0;
+            padding: 10px 30px;
             transition: all 0.2s ease;
-            font-family: 'Minecraftia', sans-serif;
         }
 
-        .btn:hover {
+        /* Эффект наведения на всю строку */
+        .list-item:hover .enter-btn {
             background-color: #a020f0;
             color: white;
-            box-shadow: 0 0 10px #a020f0;
+            box-shadow: 0 0 15px #a020f0;
+        }
+
+        /* Логика 50% прозрачности */
+        .list-container:has(.item-mc:hover) .item-figma {
+            opacity: 0.5;
+        }
+
+        .list-container:has(.item-figma:hover) .item-mc {
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
 
-    <h1>Minecraft Gradient 1.16+</h1>
-    
-    <a href="g.html" class="btn">ENTER</a>
+    <div class="list-container">
+        <a href="g.html" class="list-item item-mc">
+            <span class="title mc-color">Minecraft Gradient 1.16+</span>
+            <div class="dots"></div>
+            <span class="enter-btn">[ ENTER ]</span>
+        </a>
+
+        <a href="p.html" class="list-item item-figma">
+            <span class="title figma-color">Figma Plugins Hub</span>
+            <div class="dots"></div>
+            <span class="enter-btn">[ ENTER ]</span>
+        </a>
+    </div>
 
 </body>
 </html>
