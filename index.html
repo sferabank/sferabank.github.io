@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub Selection</title>
-    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
     
     <style>
         body {
@@ -25,7 +25,34 @@
             flex-direction: column;
             gap: 30px;
             width: 100%;
-            max-width: 1000px; /* Немного расширил для длинного названия */
+            max-width: 1000px;
+            align-items: center;
+        }
+
+        /* Анимированный заголовок Swe1h Hub */
+        .main-header {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(90deg, #ffffff, #a020f0, #8b5cf6, #ffffff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: flowColors 4s linear infinite;
+            text-shadow: 0 0 20px rgba(160, 32, 240, 0.3);
+        }
+
+        @keyframes flowColors {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .list-item-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         .list-item {
@@ -43,22 +70,9 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Градиенты для текста */
-        .mc-color {
-            background: linear-gradient(90deg, #ffffff, #a020f0);
-            -webkit-background-clip: text;
-        }
-
-        .figma-color {
-            background: linear-gradient(90deg, #ffffff, #8b5cf6);
-            -webkit-background-clip: text;
-        }
-
-        /* Новый градиент для TellRaw */
-        .tell-color {
-            background: linear-gradient(90deg, #ffffff, #d946ef);
-            -webkit-background-clip: text;
-        }
+        .mc-color { background: linear-gradient(90deg, #ffffff, #a020f0); -webkit-background-clip: text; }
+        .tell-color { background: linear-gradient(90deg, #ffffff, #d946ef); -webkit-background-clip: text; }
+        .figma-color { background: linear-gradient(90deg, #ffffff, #8b5cf6); -webkit-background-clip: text; }
 
         .dots {
             flex: 1;
@@ -81,7 +95,6 @@
             box-shadow: 0 0 15px #a020f0;
         }
 
-        /* Обновленная логика прозрачности для 3-х элементов */
         .list-container:has(.list-item:hover) .list-item:not(:hover) {
             opacity: 0.5;
         }
@@ -90,23 +103,27 @@
 <body>
 
     <div class="list-container">
-        <a href="g.html" class="list-item">
-            <span class="title mc-color">Minecraft Gradient 1.16+</span>
-            <div class="dots"></div>
-            <span class="enter-btn">[ ENTER ]</span>
-        </a>
+        <h1 class="main-header">Swe1h Hub</h1>
 
-        <a href="tell.html" class="list-item">
-            <span class="title tell-color">Minecraft TellRaw Generator</span>
-            <div class="dots"></div>
-            <span class="enter-btn">[ ENTER ]</span>
-        </a>
+        <div class="list-item-wrapper">
+            <a href="g.html" class="list-item">
+                <span class="title mc-color">Minecraft Gradient 1.16+</span>
+                <div class="dots"></div>
+                <span class="enter-btn">[ ENTER ]</span>
+            </a>
 
-        <a href="p.html" class="list-item">
-            <span class="title figma-color">Figma Plugins Hub</span>
-            <div class="dots"></div>
-            <span class="enter-btn">[ ENTER ]</span>
-        </a>
+            <a href="tell.html" class="list-item">
+                <span class="title tell-color">Minecraft TellRaw Generator</span>
+                <div class="dots"></div>
+                <span class="enter-btn">[ ENTER ]</span>
+            </a>
+
+            <a href="p.html" class="list-item">
+                <span class="title figma-color">Figma Plugins Hub</span>
+                <div class="dots"></div>
+                <span class="enter-btn">[ ENTER ]</span>
+            </a>
+        </div>
     </div>
 
 </body>
