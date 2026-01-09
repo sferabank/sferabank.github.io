@@ -24,7 +24,7 @@
             flex-direction: column;
             gap: 30px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px; /* Немного расширил для длинного названия */
         }
 
         .list-item {
@@ -53,7 +53,12 @@
             -webkit-background-clip: text;
         }
 
-        /* Линия-разделитель (пунктир или тире) */
+        /* Новый градиент для TellRaw */
+        .tell-color {
+            background: linear-gradient(90deg, #ffffff, #d946ef);
+            -webkit-background-clip: text;
+        }
+
         .dots {
             flex: 1;
             border-bottom: 3px dashed rgba(160, 32, 240, 0.3);
@@ -69,19 +74,14 @@
             transition: all 0.2s ease;
         }
 
-        /* Эффект наведения на всю строку */
         .list-item:hover .enter-btn {
             background-color: #a020f0;
             color: white;
             box-shadow: 0 0 15px #a020f0;
         }
 
-        /* Логика 50% прозрачности */
-        .list-container:has(.item-mc:hover) .item-figma {
-            opacity: 0.5;
-        }
-
-        .list-container:has(.item-figma:hover) .item-mc {
+        /* Обновленная логика прозрачности для 3-х элементов */
+        .list-container:has(.list-item:hover) .list-item:not(:hover) {
             opacity: 0.5;
         }
     </style>
@@ -89,13 +89,19 @@
 <body>
 
     <div class="list-container">
-        <a href="g.html" class="list-item item-mc">
+        <a href="g.html" class="list-item">
             <span class="title mc-color">Minecraft Gradient 1.16+</span>
             <div class="dots"></div>
             <span class="enter-btn">[ ENTER ]</span>
         </a>
 
-        <a href="p.html" class="list-item item-figma">
+        <a href="tell.html" class="list-item">
+            <span class="title tell-color">Minecraft TellRaw Generator</span>
+            <div class="dots"></div>
+            <span class="enter-btn">[ ENTER ]</span>
+        </a>
+
+        <a href="p.html" class="list-item">
             <span class="title figma-color">Figma Plugins Hub</span>
             <div class="dots"></div>
             <span class="enter-btn">[ ENTER ]</span>
